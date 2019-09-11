@@ -1,0 +1,41 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+class Solution {
+
+    static void Main(String[] args) {
+        int n = Convert.ToInt32(Console.ReadLine());
+        string[] arr_temp = Console.ReadLine().Split(' ');
+        int[] arr = Array.ConvertAll(arr_temp,Int32.Parse);
+        
+        decimal pos = 0 ;
+         decimal neg = 0 ;
+        decimal zer = 0;
+        
+        foreach(var i in arr)
+            {
+            if(i>0)
+                {
+                pos += 1;
+            }
+            if(i<0)
+                {
+                neg += 1;
+            }
+            if(i==0)
+                {
+                zer += 1;
+            }
+        }
+         
+        var posFrac =  Math.Round((pos/n),6);
+        var negFrac = Math.Round((neg/n),6);
+        var zerFrac = Math.Round((zer/n),6);
+        
+        Console.WriteLine(posFrac);
+        Console.WriteLine(negFrac);
+        Console.WriteLine(zerFrac);
+        
+    }
+}
