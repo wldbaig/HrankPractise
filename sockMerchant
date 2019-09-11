@@ -1,0 +1,48 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+class Solution {
+
+    static void Main(String[] args) {
+        int n = Convert.ToInt32(Console.ReadLine());
+        string[] c_temp = Console.ReadLine().Split(' ');
+        int[] c = Array.ConvertAll(c_temp,Int32.Parse);
+        
+        Dictionary<int, int> socks = new Dictionary<int, int>();
+        
+        foreach(var item in c)
+            {
+            if(socks.ContainsKey(item))
+                {
+                socks[item] = socks[item] + 1;
+            }
+            else
+                {
+                socks.Add(item, 1);
+            }
+        }
+        
+        var count = 0;
+        
+        foreach(var item in socks.Values)
+            {
+            if(item % 2 ==0 )
+                {
+                var a = item/2;
+                count += a; 
+            }
+            else if(item % 2 ==1 && item !=1)
+                {
+                 var a = item/2;
+                count += a; 
+            }
+             // Console.WriteLine(item);
+            
+        }
+            
+        
+        Console.WriteLine(count);
+         
+    }
+}
