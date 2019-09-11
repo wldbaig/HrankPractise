@@ -1,0 +1,34 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+class Solution {
+    public static int findCount(int abc) { 
+        int dummy=abc;
+        int answer=0;
+        int count=1;
+        while(dummy>10)
+            {
+            answer=dummy%10;
+           if(answer!=0){
+            if(abc % answer==0)
+                {
+                count++;
+            }}
+             //Console.WriteLine(dummy);
+            dummy=dummy/10;
+            }
+        return count;
+        }
+    
+    static void Main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution */
+        int testCases = Convert.ToInt32(Console.ReadLine());
+        for(int i=0; i<testCases; i++)
+            {
+            int val = Convert.ToInt32(Console.ReadLine());
+            int result= findCount(val);
+            Console.WriteLine(result);
+        }
+        
+    }
+}
