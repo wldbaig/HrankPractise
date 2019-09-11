@@ -1,0 +1,36 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.IO;
+class Solution {
+    static void Main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution */
+        
+         string[] tokens_n = Console.ReadLine().Split(' ');
+        
+        int min = Convert.ToInt32(tokens_n[0]);
+        int max = Convert.ToInt32(tokens_n[1]);
+        int div = Convert.ToInt32(tokens_n[2]);
+        
+        var count =0;
+        
+        foreach(var i in Enumerable.Range(min, max-min+1))
+            {
+            
+           var reev=0;
+            var num = i;
+            while (num>0) 
+            {
+               reev = reev*10 + num%10;
+               num /= 10;
+            } 
+            
+            if(Math.Abs(i-reev) % div == 0)
+                count++;
+ 
+        }
+        
+        Console.WriteLine(count);
+        
+    }
+}
