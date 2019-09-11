@@ -1,0 +1,54 @@
+using System;
+using System.Collections.Generic; 
+using System.IO;
+using System.Linq;
+class Solution {
+
+    static void Main(String[] args) {
+        string[] tokens_m = Console.ReadLine().Split(' ');
+        int m = Convert.ToInt32(tokens_m[0]);
+        int n = Convert.ToInt32(tokens_m[1]);
+        string[] magazine = Console.ReadLine().Split(' ');
+        string[] ransom = Console.ReadLine().Split(' ');
+        
+        string isExist = "";
+        
+       canCreate(magazine, ransom);
+        
+        
+    }
+    
+    public static void canCreate(String [] magazine, String [] ransom) {
+        Dictionary<string, int> Words = makeMap(magazine);
+        
+        for (int i = 0; i < ransom.Length; i++) {
+            if ( Words.ContainsKey(ransom[i]) && Words[ransom[i]] > 0  ) {
+                
+                
+                var val = Words[ransom[i]];
+                
+                Words[ransom[i]] = val - 1;
+                
+            } else {
+                Console.WriteLine("No");
+                return;
+            }
+        }
+       Console.WriteLine("Yes");
+    }
+    
+    /* Makes HashMap out of an array of Strings */
+    private static Dictionary<string, int>  makeMap(String [] words) {
+        Dictionary<string, int> map = new Dictionary<string, int>();
+        for (int i = 0; i < words.Length; i++) {
+            if (map.ContainsKey(words[i])) {
+                 var valu = map[words[i]];
+                map[words[i]] = valu+1;
+                
+            } else {
+                map.Add(words[i], 1);
+            }
+        }
+        return map;
+    }
+}
