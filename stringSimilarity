@@ -1,0 +1,73 @@
+using System.CodeDom.Compiler;
+using System.Collections.Generic;
+using System.Collections;
+using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.Serialization;
+using System.Text.RegularExpressions;
+using System.Text;
+using System;
+
+class Solution {
+
+    // Complete the stringSimilarity function below.
+    static long stringSimilarity(string s) {
+            
+            long n = s.Length;
+            long[] z = new long[n];
+            char[] x = s.ToCharArray();
+             
+            for (long i = 1, l = 0, r = 0; i < n; ++i)
+            {
+                if (i <= r)
+                {
+                    z[i] = min(r - i + 1, z[i - l]);
+                }
+
+                 while (i + z[i] < n && x[z[i]] == x[i + z[i]])
+                {
+                    ++z[i];
+                }
+
+                if (i + z[i] - 1 > r)
+                {
+                    l = i;
+                    r = i + z[i] - 1;
+                }
+            }
+            return z.Sum() + n;
+                }
+
+public static long min(long a, long b)
+        {
+            if (a < b)
+            {
+                return a;
+            }
+            else
+            {
+                return b;
+            }
+        }
+
+    static void Main(string[] args) {
+        TextWriter textWriter = new StreamWriter(@System.Environment.GetEnvironmentVariable("OUTPUT_PATH"), true);
+
+        int t = Convert.ToInt32(Console.ReadLine());
+
+        for (int tItr = 0; tItr < t; tItr++) {
+            string s = Console.ReadLine();
+
+            long result = stringSimilarity(s);
+
+            textWriter.WriteLine(result);
+        }
+
+        textWriter.Flush();
+        textWriter.Close();
+    }
+}
