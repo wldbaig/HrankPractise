@@ -1,0 +1,61 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+class Solution {
+
+    static void Main(String[] args) {
+        string[] tokens_n = Console.ReadLine().Split(' ');
+        int n = Convert.ToInt32(tokens_n[0]);
+        int k = Convert.ToInt32(tokens_n[1]);
+        int q = Convert.ToInt32(tokens_n[2]);
+        string[] a_temp = Console.ReadLine().Split(' ');
+        int[] arr = Array.ConvertAll(a_temp,Int32.Parse);
+        
+       // rotatearray(a, k);
+        
+    /*     for (int i = 0; i < k; i++) {
+		for (int j = n - 1; j > 0; j--) {
+			int temp = a[j];
+			a[j] = a[j - 1];
+			a[j - 1] = temp;
+		}
+        } 
+        */
+        
+        
+        if(k > n){
+		k = k % n;
+	}
+ 
+	//length of first part
+	int a = n - k; 
+ 
+	reverse(arr, 0, a-1);
+	reverse(arr, a, n-1);
+	reverse(arr, 0, n-1);
+        
+        
+        for(int a0 = 0; a0 < q; a0++){
+            int m = Convert.ToInt32(Console.ReadLine());
+            
+            Console.WriteLine(arr[m]);
+            
+        }
+        
+        
+        }
+    
+    public static void reverse(int[] arr, int left, int right){
+	
+ 
+	while(left < right){
+		int temp = arr[left];
+		arr[left] = arr[right];
+		arr[right] = temp;
+		left++;
+		right--;
+	}
+    }
+    
+}
