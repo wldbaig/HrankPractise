@@ -1,0 +1,42 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+class Solution {
+
+    static void Main(String[] args) {
+        string time = Console.ReadLine();
+        string[] timeArr = time.Split(':');
+string AMPM = timeArr[2].Substring(2);
+if (AMPM.Contains("PM"))
+{
+string hh = string.Empty;
+if (timeArr[0] == "12")
+{
+hh = "12";
+}
+else if (Convert.ToInt16(timeArr[0]) + 12 == 24)
+{
+hh = "00";
+}
+else
+{
+hh = (Convert.ToInt16(timeArr[0]) + 12).ToString();
+}
+
+Console.WriteLine(string.Concat(hh, ":", timeArr[1], ":", timeArr[2].Substring(0, 2)));
+}
+else if (AMPM.Contains("AM"))
+{
+if (timeArr[0] == "12")
+{
+Console.WriteLine(string.Concat("00:", timeArr[1], ":", timeArr[2].Substring(0, 2)));
+}
+else
+{
+Console.WriteLine(time.Substring(0, time.Length - 2));
+}
+}
+
+    }
+}
