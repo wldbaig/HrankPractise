@@ -1,0 +1,21 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+class Solution {
+
+    static void Main(String[] args) {
+        string s = Console.ReadLine();
+        
+        var count = 1;
+        
+        foreach(var item in s)
+            {
+            if(char.IsUpper(item))
+                count++;
+        }
+        
+        Console.WriteLine(count);
+        
+    }
+}
