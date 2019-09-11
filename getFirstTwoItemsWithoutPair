@@ -1,0 +1,47 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace HackerRank2
+{
+    class Result
+    {
+
+        /*
+         * Complete the 'getFirstTwoItemsWithoutPair' function below.
+         *
+         * The function is expected to return an INTEGER_ARRAY.
+         * The function accepts INTEGER_ARRAY list as parameter.
+         */
+
+        public static List<int> getFirstTwoItemsWithoutPair(List<int> list)
+        {
+            var noPairs = list.GroupBy(i => i)
+                    .Where(g => g.Count() == 1)
+                    .Select(g => g.Key);
+            return noPairs.Take(2).ToList();
+        }
+    }
+
+    class Solution
+    {
+         
+        public static void Main(string[] args)
+        {
+
+            int listCount = Convert.ToInt32(Console.ReadLine().Trim());
+ 
+            List<int> list = new List<int>();
+
+            for (int i = 0; i < listCount; i++)
+            {
+                int listItem = Convert.ToInt32(Console.ReadLine().Trim());
+                list.Add(listItem);
+            }
+
+            List<int> result = Result.getFirstTwoItemsWithoutPair(list);
+
+            Console.WriteLine(String.Join("\n", result));
+        }
+    }
+}
