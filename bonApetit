@@ -1,0 +1,38 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+class Solution {
+    static void Main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution */
+         string[] tokens_n = Console.ReadLine().Split(' ');
+        int n = Convert.ToInt32(tokens_n[0]);
+        int m = Convert.ToInt32(tokens_n[1]);
+        string[] a_temp = Console.ReadLine().Split(' ');
+        int[] a = Array.ConvertAll(a_temp,Int32.Parse);
+        string b_temp = Console.ReadLine();
+        int b = Convert.ToInt32(b_temp);
+       
+        long sum = 0;
+        
+        for(int i = 0 ; i < n ; i ++)
+            {
+            if(i != m)
+                {
+                sum += a[i];
+            }
+        }
+        
+        if(sum / 2 == b)
+            {
+            Console.WriteLine("Bon Appetit");
+        }
+        else
+            {
+           var actualBill =  sum / 2;
+            
+            Console.WriteLine(b-actualBill);
+        }
+        
+        
+    }
+}
