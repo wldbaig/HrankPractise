@@ -1,0 +1,37 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+class Solution {
+
+    static void Main(String[] args) {
+        string[] h_temp = Console.ReadLine().Split(' ');
+        int[] h = Array.ConvertAll(h_temp,Int32.Parse);
+        
+        
+        Dictionary<string, int> values =
+            new Dictionary<string, int>();
+        char c = 'a';
+        for(int i = 0; i < 26; i++)
+            {
+            values.Add(c.ToString(), h[i]);
+            c++;
+        }
+        
+        string word = Console.ReadLine();
+        
+        int height = 0;
+        
+        foreach(var charc in word)
+            {
+            var val = values[charc.ToString()];
+            
+            if(val > height)
+                height = val;
+            
+        }
+        
+        Console.WriteLine(word.Length*height);
+        
+    }
+}
