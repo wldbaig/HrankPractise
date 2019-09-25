@@ -1,0 +1,58 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+class Solution {
+    static void Main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution */
+
+        int n = Convert.ToInt32(Console.ReadLine());
+
+
+        long[] arr = Array.ConvertAll(Console.ReadLine().Split(' '), arrTemp => Convert.ToInt64(arrTemp))
+        ;
+
+        var newarr= arr;
+
+        var mean = Math.Round((double)arr.Sum()/n, 1);
+
+        Console.WriteLine(mean);
+
+        Array.Sort(arr);
+
+        var arLen = arr.Length;
+
+        double median;
+
+        var isOdd = arLen % 2 != 0;
+        if (isOdd)
+        {
+            median = arr[(arLen + 1) / 2 - 1];
+        }
+        else
+        {
+            median = (arr[arLen / 2 - 1] + arr[arLen / 2]) / 2.0;
+        }
+
+        Console.WriteLine(Math.Round(median, 1));
+
+        Dictionary<long, int> map = new Dictionary<long, int>();
+        foreach(var item in newarr){
+            if (map.ContainsKey(item))
+            {
+                map[item] =  map[item]  + 1;
+            }
+            else
+            {
+                map.Add(item, 1);
+            }
+        }
+
+        var maxvalue = map.Values.Max();  
+
+        var element = map.Where(pair => pair.Value == maxvalue).Select(pair => pair.Key).ToList();
+
+       Console.WriteLine(element.FirstOrDefault());
+    }
+}
+
