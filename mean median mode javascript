@@ -1,0 +1,65 @@
+function processData(input) {
+    //Enter your code here
+
+    var count = parseInt(input.split('\n')[0]);
+    
+    var array =  input.split('\n')[1].split(' ');
+   var newArray = array;
+   
+    var sum = array.reduce((a, b) => parseInt(a) + parseInt(b));
+     
+    console.log( Math.round((sum/ count) * 10) / 10);
+
+
+    array.sort((a, b) => a - b); 
+
+    var median= 0.0;
+    var half = count / 2;
+    var isOdd = count % 2 != 0;
+    if (isOdd){
+        median = array[(half + 1)]; 
+    }
+    else{
+        median = ((parseInt(array[half - 1]) + parseInt(array[half])) / 2.0); 
+    }
+
+    console.log( Math.round((median) * 10) / 10);
+
+    var dict = {key: 0, value: 0};
+
+    newArray.forEach(function (element) {
+        if(dict[element] != undefined){
+            var value = dict[element];
+            dict[element] = value +1;
+        }
+        else{
+            dict[element] = 1;
+        } 
+    });
+     
+    var max = 0;
+    for (var key in dict){
+        max = (max < dict[key]) ? dict[key] : max;
+    }
+
+    var arr = [];
+
+     for (var key in dict){
+       if(dict[key] == max){
+            arr.push(key);
+       }
+    }  
+    
+    console.log(arr[0]);
+} 
+
+process.stdin.resume();
+process.stdin.setEncoding("ascii");
+_input = "";
+process.stdin.on("data", function (input) {
+    _input += input;
+});
+
+process.stdin.on("end", function () {
+   processData(_input);
+});
