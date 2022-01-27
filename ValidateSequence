@@ -1,0 +1,27 @@
+using System;
+using System.Collections.Generic;
+
+public class Program {
+	public static bool IsValidSubsequence(List<int> array, List<int> sequence) {
+	 
+   /*Validate Sequence
+   
+  Given two non-empty arrays of integers, write a function that determines
+  whether the second array is a subsequence of the first one.
+   */
+   
+		if(sequence.Count > array.Count){
+			return false;
+		}
+	 
+		int arrIndex = 0, seqIndx = 0;
+		while(arrIndex < array.Count && seqIndx < sequence.Count){
+			if(array[arrIndex] == sequence[seqIndx]){
+				seqIndx++;
+			}
+			arrIndex++;
+		}
+		return seqIndx == sequence.Count;
+		
+	}
+}
