@@ -1,0 +1,49 @@
+using System.Collections.Generic;
+using System;
+using System.Linq;
+
+public class Program {
+
+	public string TournamentWinner(List<List<string> > competitions, List<int> results) {
+		// Write your code here.
+    /* 
+    
+  There's an algorithms tournament taking place in which teams of programmers
+  compete against each other to solve algorithmic problems as fast as possible.
+  Teams compete in a round robin, where each team faces off against all other
+  teams. Only two teams compete against each other at a time, and for each
+  competition, one team is designated the home team, while the other team is the
+  away team. In each competition there's always one winner and one loser; there
+  are no ties. A team receives 3 points if it wins and 0 points if it loses. The
+  winner of the tournament is the team that receives the most amount of points.
+  
+  competitions =  = [
+  ["HTML", "C#"],
+  ["C#", "Python"],
+  ["Python", "HTML"],
+]
+result = [0,0,1]
+  
+    */
+    
+		Dictionary<string, int> dict = new Dictionary<string, int>();
+		List<string> Team = new List<string>();
+		var winTeam = "";
+		for(int i = 0; i < results.Count; i++){
+			
+			Team = competitions[i];
+			winTeam = (results[i] == 0) ? Team [1] : Team[0];
+
+			if(dict.ContainsKey(winTeam)){
+					 	dict[winTeam] +=3;
+				 }
+				 else{
+						dict.Add(winTeam,3);
+				 } 
+		}
+		var max = dict.Aggregate((l, r) => l.Value > r.Value ? l : r).Key;
+		
+		return max;
+	}
+}
+
